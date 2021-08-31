@@ -16,7 +16,7 @@ class InputDevices {
     public:
         InputDevices();
         void begin();
-        DataPacket read();
+        DataPacket * read();
         char * debugString();
 };
 

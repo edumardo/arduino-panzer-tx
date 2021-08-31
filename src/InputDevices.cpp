@@ -21,16 +21,15 @@ void InputDevices::begin() {
 /**
  *
  */
-DataPacket InputDevices::read() {
+DataPacket * InputDevices::read() {
 
-    m_data.lx = m_leftJoystick.getXValue();
-    m_data.ly = m_leftJoystick.getYValue();
-    m_data.lb = m_leftJoystick.getbuttonValue();
-    m_data.rx = m_rightJoystick.getXValue();
-    m_data.ry = m_rightJoystick.getYValue();
-    m_data.rb = m_rightJoystick.getbuttonValue();
-
-    return m_data;
+    m_data[NRF24_LX] = m_leftJoystick.getXValue();
+    m_data[NRF24_LY] = m_leftJoystick.getYValue();
+    m_data[NRF24_LB] = m_leftJoystick.getbuttonValue();
+    m_data[NRF24_RX] = m_rightJoystick.getXValue();
+    m_data[NRF24_RY] = m_rightJoystick.getYValue();
+    m_data[NRF24_RB] = m_rightJoystick.getbuttonValue();
+    return &m_data;
 }
 
 /**
@@ -39,8 +38,8 @@ DataPacket InputDevices::read() {
 char * InputDevices::debugString() {
 
     sprintf(m_debugString, "{lx: %d, ly: %d, lb: %d | rx: %d, ry: %d, rb: %d}",
-        m_data.lx, m_data.ly, m_data.lb,
-        m_data.rx, m_data.ry, m_data.rb
+        m_data[NRF24_LX], m_data[NRF24_LY], m_data[NRF24_LB],
+        m_data[NRF24_RX], m_data[NRF24_RY], m_data[NRF24_RB]
         );
 
     return m_debugString;

@@ -7,7 +7,7 @@
 #include "src/InputDevices.h"
 
 RF24 radio(RF24_CE_PIN, RF24_CSN_PIN);
-DataPacket dataPacket;
+DataPacket * dataPacket;
 InputDevices inputDevices;
 operationMode opMode = transmitter;
 
@@ -33,7 +33,7 @@ void loop() {
 
     // Transmitter mode
     if (opMode == transmitter) {
-        radio.write(&dataPacket, sizeof(dataPacket));
+        radio.write(dataPacket, sizeof(dataPacket));
         if (DEBUG_MODE) Serial.println("[Transmitter mode]");
     }
     // Configuration mode
