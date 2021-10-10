@@ -4,15 +4,18 @@
 #include <Arduino.h>
 
 // General
-const uint8_t DEBUG_MODE = 1;
-const uint16_t LOOP_DELAY_MS = 200;
+const uint8_t  DEBUG_MODE       =    1;
+const uint16_t LOOP_DELAY_MS    =   50;
+const uint16_t MAX_ANALOG_INPUT = 1023;
+const uint16_t BAUD_RATE        = 9600;
+
 
 // RF24 pins
 const uint8_t RF24_CE_PIN  =  9;
 const uint8_t RF24_CSN_PIN = 10;
 
 // RF24 Address
-const uint8_t RF24_ADDRESS[5] = "00001";
+const uint8_t RF24_ADDRESS[6] = "AP-TX";
 
 // Left joystick pins
 const uint8_t  L_JOYSTICK_X_PIN      =  A0;
