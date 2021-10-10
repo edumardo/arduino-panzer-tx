@@ -13,7 +13,9 @@ operationMode opMode = transmitter;
 
 void setup() {
 
-    Serial.begin(9600);
+    Serial.begin(BAUD_RATE);
+
+    inputDevices.begin();
 
     radio.begin();
     radio.openWritingPipe(RF24_ADDRESS);
@@ -33,13 +35,11 @@ void loop() {
 
     // Transmitter mode
     if (opMode == transmitter) {
-        radio.write(dataPacket, sizeof(dataPacket));
-        if (DEBUG_MODE) Serial.println("[Transmitter mode]");
+        radio.write(&dataPacket, sizeof(dataPacket));
     }
     // Configuration mode
     else {
         // lcd and EEPROM ?
-        if (DEBUG_MODE) Serial.println("[Configuration mode]");
     }
 
     delay(LOOP_DELAY_MS);
