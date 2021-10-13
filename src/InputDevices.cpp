@@ -16,6 +16,7 @@ void InputDevices::begin() {
 
     m_leftJoystick.invertYAxis();
     m_rightJoystick.invertYAxis();
+    resetData();
 }
 
 /**
@@ -43,4 +44,17 @@ char * InputDevices::debugString() {
         );
 
     return m_debugString;
+}
+
+/**
+ * 
+ */
+void InputDevices::resetData(){
+
+    m_data.lx = (MAX_ANALOG_INPUT + 1) / 2;
+    m_data.ly = (MAX_ANALOG_INPUT + 1) / 2;
+    m_data.lb = 0;
+    m_data.rx = (MAX_ANALOG_INPUT + 1) / 2;
+    m_data.ry = (MAX_ANALOG_INPUT + 1) / 2;
+    m_data.rb = 0;
 }
