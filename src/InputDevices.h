@@ -12,6 +12,7 @@ class InputDevices {
         Joystick m_rightJoystick;
         DataPacket m_data;
         char m_debugString[100];
+        void resetData();
 
     public:
         InputDevices();
