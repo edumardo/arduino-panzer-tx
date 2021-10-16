@@ -7,13 +7,15 @@
 #include "src/InputDevices.h"
 
 RF24 radio(RF24_CE_PIN, RF24_CSN_PIN);
-DataPacket * dataPacket;
+DataPacket dataPacket;
 InputDevices inputDevices;
 operationMode opMode = transmitter;
 
-void setup() {
-
+void setup()
+{
+#ifdef DEBUG_MODE
     Serial.begin(BAUD_RATE);
+#endif
 
     inputDevices.begin();
 
@@ -24,21 +26,23 @@ void setup() {
     radio.setPALevel(RF24_PA_LOW);
 }
 
-void loop() {
-
+void loop()
+{
     dataPacket = inputDevices.read();
-    if (DEBUG_MODE) {
-        Serial.print((int) sizeof(dataPacket), DEC);
-        Serial.print("B ");
-        Serial.println(inputDevices.debugString());
-    }
+#ifdef DEBUG_MODE
+    Serial.print((int)sizeof(dataPacket.payload), DEC);
+    Serial.print(" Bytes ");
+    Serial.println(inputDevices.debugString());
+#endif
 
     // Transmitter mode
-    if (opMode == transmitter) {
+    if (opMode == transmitter)
+    {
         radio.write(&dataPacket, sizeof(dataPacket));
     }
     // Configuration mode
-    else {
+    else
+    {
         // lcd and EEPROM ?
     }
 

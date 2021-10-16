@@ -4,7 +4,7 @@
 #include <Arduino.h>
 
 // General
-const uint8_t  DEBUG_MODE       =    1;
+#define DEBUG_MODE
 const uint16_t LOOP_DELAY_MS    =   50;
 const uint16_t MAX_ANALOG_INPUT = 1023;
 const uint16_t BAUD_RATE        = 9600;

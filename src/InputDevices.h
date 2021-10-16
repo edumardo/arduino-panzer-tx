@@ -5,8 +5,8 @@
 #include <Joystick.h>
 #include "DataPacket.h"
 
-class InputDevices {
-
+class InputDevices 
+{
     private:
         Joystick m_leftJoystick;
         Joystick m_rightJoystick;
@@ -17,7 +17,7 @@ class InputDevices {
     public:
         InputDevices();
         void begin();
-        DataPacket * read();
+        DataPacket read();
         char * debugString();
 };
 

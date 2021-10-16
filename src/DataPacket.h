@@ -3,18 +3,22 @@
 
 #include <Arduino.h>
 
-// DataPacket size
-const uint8_t DATAPACKET_SIZE = 6;
+#define DATAPACKET_SIZE 10                      // DataPacket payload size
+#define NRF24_N_INPUTS 6                        // Number of inputs
 
-// Position in DataPacket array
-const uint8_t NRF24_LX = 0;
-const uint8_t NRF24_LY = 1;
-const uint8_t NRF24_LB = 2;
-const uint8_t NRF24_RX = 3;
-const uint8_t NRF24_RY = 4;
-const uint8_t NRF24_RB = 5;
+// Input number in datapacket payload
+#define NRF24_LX 0                              // Left joystick, x axis
+#define NRF24_LY 1                              // Left joystick, y axis
+#define NRF24_LB 2                              // Left joystick, button
+#define NRF24_RX 3                              // Right joystick, x axis
+#define NRF24_RY 4                              // Right joystick, y axis
+#define NRF24_RB 5                              // Right joystick, button
 
-// DataPacket type
-typedef uint8_t DataPacket[DATAPACKET_SIZE];
+typedef struct dataPacket                       // Datapacket struct with payload array
+{
+    uint8_t payload[DATAPACKET_SIZE];
+} DataPacket;
+
+extern uint8_t inputSize[NRF24_N_INPUTS][2];    // { Input number, size in bytes }
 
 #endif
